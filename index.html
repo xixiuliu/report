@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微信口袋报告</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <link href="res/css/swiper.min.css" type="text/css" rel="stylesheet" />
+    <!--
+        <link rel="prefetch" href="res/video06272016.mp4">
+    -->
+    <link href="res/css/common.css" type="text/css" rel="stylesheet" />
+    <script src="res/js/jquery-1.8.2.min.js"></script>
+    <script src="res/js/swiper.min.js"></script>
+    <script>
+        imgHash = [
+            // 将所有需要加载的图片地址写于此处
+            "res/images/bar.png",
+            "res/images/bg.jpg",
+            "res/images/bg1.png",
+            "res/images/bg2.png",
+            "res/images/bg3.png",
+            "res/images/circle.png",
+            "res/images/curtain_left.png",
+            "res/images/curtain_left2.png",
+            "res/images/curtain_left3.png",
+            "res/images/curtain_logo.png",
+            "res/images/curtain_right.png",
+            "res/images/curtain_right2.png",
+            "res/images/curtain_top.png",
+            "res/images/float1.png",
+            "res/images/float2.png",
+            "res/images/float3.png",
+            "res/images/float4.png",
+            "res/images/float5.png",
+            "res/images/float6.png",
+            "res/images/float7.png",
+            "res/images/float8.png",
+            "res/images/float9.png",
+            "res/images/float10.png",
+            "res/images/float11.png",
+            "res/images/hand.png",
+            "res/images/hand2.png",
+            "res/images/hand2-thumb.png",
+            "res/images/hand-s.png",
+            "res/images/icon.png",
+            "res/images/icon01.png",
+            "res/images/icon02.png",
+            "res/images/icon2.png",
+            "res/images/icon3.png",
+            "res/images/icon04.png",
+            "res/images/icon4.png",
+            "res/images/icon05.png",
+            "res/images/icon5.png",
+            "res/images/icon06.png",
+            "res/images/icon6.png",
+            "res/images/icon07.png",
+            "res/images/icon08.png",
+            "res/images/icon09.png",
+            "res/images/icon010.png",
+            "res/images/icon11.png",
+            "res/images/next.png",
+            "res/images/page.png",
+            "res/images/page1-1.png",
+            "res/images/page1-2.png",
+            "res/images/page2-1.png",
+            "res/images/page2-2.png",
+            "res/images/page2-3.png",
+            "res/images/page3.png",
+            "res/images/page4-1.png",
+            "res/images/page4-2.png",
+            "res/images/page5-1.png",
+            "res/images/page5-2.png",
+            "res/images/page6-1.png",
+            "res/images/page6-2.png",
+            "res/images/prev.png",
+            "res/images/share1.jpg",
+            "res/images/slide1.png",
+            "res/images/slide2.png",
+            "res/images/slide3.png",
+            "res/images/slide4.png",
+            "res/images/slide5.png",
+            "res/images/slide6.png",
+            "res/images/slide-bg1.png",
+            "res/images/slide-bg2.png",
+            "res/images/slide-float1.png",
+            "res/images/slide-float3.png",
+            "res/images/slide-float4.png",
+            "res/images/slide-left.png",
+            "res/images/slide-page1.png",
+            "res/images/slide-page2.png",
+            "res/images/slide-page3.png",
+            "res/images/slide-page4.png",
+            "res/images/slide-right.png",
+            "res/images/ticket.png",
+            "res/images/ticket2.png",
+            "res/images/ticket3.png",
+            "res/images/ticket4.png",
+            "res/images/next.png",
+            "res/images/top-next.png"
+        ];
+    </script><!--
+    <link rel="stylesheet" type="text/css" href="res/css/jquery.slideunlock.css">
+    <script type="text/javascript" src="res/js/jquery.slideunlock.min.js"></script>-->
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="res/js/run.js"></script>
+    <script>
+    	//禁止微信分享 start
+	    function onBridgeReady(){
+			 WeixinJSBridge.call('hideOptionMenu');
+		}
+	
+		if (typeof WeixinJSBridge == "undefined"){
+		    if( document.addEventListener ){
+		        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+		    }else if (document.attachEvent){
+		        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+		        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+		    }
+		}else{
+		    onBridgeReady();
+		}
+		//禁止微信分享 end
+    
+        $(function () {
+            document.getElementById('music').play();
+            document.getElementById('music1').play();
+            document.getElementById('music2').play();
+
+            document.getElementById('music1').pause();
+            document.getElementById('music2').pause();
+            document.addEventListener("WeixinJSBridgeReady", function () {
+
+                document.getElementById('music').play();
+                document.getElementById('music1').play();
+                document.getElementById('music2').play();
+
+                document.getElementById('music1').pause();
+                document.getElementById('music2').pause();
+            }, false);
+        })
+    </script>
+</head>
+
+<body>
+
+<div id="loading" class="loading" style=" display:block;">
+    <div class="loading_icon"></div>
+    <div class="per"></div>
+</div>
+<div class="music-box">
+    <audio id="music"   preload="auto" src="res/music.mp3"></audio>
+    <audio id="music1"  loop="loop" preload="auto" src="res/music1.mp3"></audio>
+    <audio id="music2"  loop="loop" preload="auto" src="res/music2.mp3"></audio>
+</div>
+<!-- Swiper -->
+<div class="swiper-container swiper-container1">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide stop-swiping">
+            <div class="opening_slide">
+                <div class="curtain_top"><img src="res/images/curtain_top.png" alt=""></div>
+                <div class="curtain_left"><!--<img src="res/images/curtain_left.png" alt="">--></div>
+                <div class="curtain_right"><!--<img src="res/images/curtain_right.png" alt="">--></div>
+                <div class="curtain_logo">
+                    <img src="res/images/curtain_logo.png" alt="">
+                    <div class="float1"><img src="res/images/float1.png" alt=""></div>
+                    <div class="float2"><img src="res/images/float2.png" alt=""></div>
+                    <div class="float3"><img src="res/images/float3.png" alt=""></div>
+                    <div class="float4"><img src="res/images/float4.png" alt=""></div>
+                    <div class="float5"><img src="res/images/float5.png" alt=""></div>
+                    <div class="float6"><img src="res/images/float6.png" alt=""></div>
+                    <div class="float7"><img src="res/images/float7.png" alt=""></div>
+                    <div class="float8"><img src="res/images/float8.png" alt=""></div>
+                    <div class="float9"><img src="res/images/float9.png" alt=""></div>
+                    <div class="float10"><img src="res/images/float10.png" alt=""></div>
+                    <div class="float11"><img src="res/images/float11.png" alt=""></div>
+                </div>
+                <div class="ticket ticket2"><img src="res/images/ticket2.png" alt=""></div>
+                <div class="ticket ticket3"><img src="res/images/ticket.png" alt=""></div>
+                <div class="hand" style="z-index:1000">
+                    <img src="res/images/hand.png" alt="">
+                    <p>点击检票入场</p>
+                </div>
+                <div class="takeover"><img src="res/images/hand2.png" alt=""></div>
+                <div class="takeover thumb"><img src="res/images/hand2-thumb.png" alt=""></div>
+                <div class="video-box">
+                    <video id="video" x-webkit-airplay="true" webkit-playsinline="true" playsinline="true" x5-video-player-type="h5" x5-video-orientation="portrait" x5-video-player-fullscreen="true"  preload="auto" src="res/video1.mp4" class="IIV" style="width: 100%;height: 100%;object-fit:fill"></video>
+                </div>
+            </div>
+        </div>
+        <!--<div class="swiper-slide swiper-slide-two stop-swiping">
+            <video id="video" x-webkit-airplay="" webkit-playsinline="" playsinline="" x5-video-player-type="h5" x5-video-orientation="portrait" x5-video-player-fullscreen="true"  preload="auto" src="res/video1.mp4" class="IIV" style="width: 100%;height: 100%;object-fit:fill"></video>
+        </div>-->
+        <div class="swiper-slide swiper-slide-five stop-swiping">
+            <div class="page1_box">
+                <div class="tit">
+                    天使来电
+                </div>
+                <div class="tele_box clearfix">
+                    <div class="tele_block left">
+                        <div class="tele">
+                            <div class="tele_icon1">
+                                提醒我
+                            </div>
+                            <a href="javascript:void(0)" class="tele_link">
+                                <div class="link_block">
+                                    <div class=""></div>
+                                    <div class="tele_icon3"></div>
+                                </div>
+                                <div class="">
+                                    拒绝
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="tele_block right">
+                        <div class="tele">
+                            <div class="tele_icon2">
+                                信息
+                            </div>
+                            <a class="tele_link accept" href="javascript:void(0)">
+                                <div class="link_block">
+                                    <div class="tele_bg"></div>
+                                    <div class="tele_icon4"></div>
+                                </div>
+                                <div class="">
+                                    接受
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide slide-page">
+            <img src="res/images/slide-page1.png" alt="">
+            <img src="res/images/slide-page2.png" alt="">
+            <img src="res/images/slide-page3.png" alt="">
+            <img src="res/images/slide-page4.png" alt="">
+        </div>
+        <div class="swiper-slide swiper-slide-six stop-swiping">
+            <div class="page2_box">
+                <div class="tele2_box">
+                    <div class="wing_left">
+                        <img src="res/images/icon07.png" />
+                    </div>
+                    <div class="wing_right">
+                        <img src="res/images/icon06.png" />
+                    </div>
+                    <div class="aureole">
+                        <img src="res/images/icon05.png" />
+                    </div>
+                    <div class="tele2_block">
+                        <img src="res/images/icon08.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="page-box"><img src="res/images/page.png" alt=""></div>
+            <div class="circle">
+                <img src="res/images/circle.png" alt="">
+            </div>
+            <div class="hand">
+                <img class="hand-s" src="res/images/hand-s.png" alt="">
+            </div>
+        </div>
+        <div class="swiper-slide stop-swiping swiper-slide-three">
+            <div class="swiper-container swiper-container2">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide active-s act-txt">
+                        <div class="content-box">
+                            <div class="icon-box">
+                                <dl>
+                                    <dd>当月直连销售</dd>
+                                    <dt>
+                                        <img src="res/images/icon2.png" alt="">
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="intro-box">
+                                <p class="slide-txt"><img src="res/images/slide1.png" alt=""></p>
+                                <p class="slide-left"><img src="res/images/slide-left.png" alt=""></p>
+                                <p class="slide-right"><img src="res/images/slide-right.png" alt=""></p>
+                            </div>
+                            <div class="content">
+                                <!--<div class="blur"></div>-->
+                                <img src="res/images/page1-1.png" alt="">
+                            </div>
+                            <div class="bar-box">
+                                <div class="img"><img src="res/images/bar.png" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="content-box">
+                            <div class="icon-box">
+                                <dl>
+                                    <dd>当月直连销售</dd>
+                                    <dt>
+                                        <img src="res/images/icon2.png" alt="">
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="intro-box">
+                                <p class="slide-txt"><img src="res/images/slide1.png" alt=""></p>
+                                <p class="slide-left"><img src="res/images/slide-left.png" alt=""></p>
+                                <p class="slide-right"><img src="res/images/slide-right.png" alt=""></p>
+                            </div>
+                            <div class="content">
+                                <img src="res/images/page1-2.png" alt="">
+                            </div>
+                            <div class="bar-box">
+                                <div class="img"><img src="res/images/bar.png" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide active-s act-txt">
+                        <div class="content-box">
+                            <div class="icon-box">
+                                <dl>
+                                    <dd>绩效表现</dd>
+                                    <dt>
+                                        <img src="res/images/icon.png" alt="">
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="intro-box">
+                                <p class="slide-txt"><img src="res/images/slide2.png" alt=""></p>
+                                <p class="slide-left"><img src="res/images/slide-left.png" alt=""></p>
+                                <p class="slide-right"><img src="res/images/slide-right.png" alt=""></p>
+                            </div>
+                            <div class="content">
+                                <img src="res/images/page2-1.png" alt="">
+                            </div>
+                            <div class="bar-box">
+                                <div class="img"><img src="res/images/bar.png" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="content-box">
+                            <div class="icon-box">
+                                <dl>
+                                    <dd>绩效表现</dd>
+                                    <dt>
+                                        <img src="res/images/icon.png" alt="">
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="intro-box">
+                                <p class="slide-txt"><img src="res/images/slide2.png" alt=""></p>
+                                <p class="slide-left"><img src="res/images/slide-left.png" alt=""></p>
+                                <p class="slide-right"><img src="res/images/slide-right.png" alt=""></p>
+                            </div>
+                            <div class="content">
+                                <img src="res/images/page2-2.png" alt="">
+                            </div>
+                            <div class="bar-box">
+                                <div class="img"><img src="res/images/bar.png" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="content-box">
+                            <div class="icon-box">
+                                <dl>
+                                    <dd>全年销售</dd>
+                                    <dt>
+                                        <img src="res/images/icon4-1.png" alt="">
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="intro-box">
+                                <p class="slide-txt"><img src="res/images/slide2.png" alt=""></p>
+                                <p class="slide-left"><img src="res/images/slide-left.png" alt=""></p>
+                                <p class="slide-right"><img src="res/images/slide-right.png" alt=""></p>
+                            </div>
+                            <div class="content">
+                                <img src="res/images/page2-3.png" alt="">
+                            </div>
+                            <div class="bar-box">
+                                <div class="img"><img src="res/images/bar.png" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide active-s act-txt">
+                        <div class="content-box">
+                            <div class="icon-box">
+                                <dl>
+                                    <dd>销售过程行为</dd>
+                                    <dt>
+                                        <img src="res/images/icon4.png" alt="">
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="intro-box">
+                                <p class="slide-txt"><img src="res/images/slide3.png" alt=""></p>
+                                <p class="slide-left"><img src="res/images/slide-left.png" alt=""></p>
+                                <p class="slide-right"><img src="res/images/slide-right.png" alt=""></p>
+                            </div>
+                            <div class="content">
+                                <img src="res/images/page3.png" alt="">
+                            </div>
+                            <div class="bar-box">
+                                <div class="img"><img src="res/images/bar.png" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide active-s act-txt">
+                        <div class="content-box">
+                            <div class="icon-box">
+                                <dl>
+                                    <dd>绩效表现</dd>
+                                    <dt>
+                                        <img src="res/images/icon.png" alt="">
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="intro-box">
+                                <p class="slide-txt"><img src="res/images/slide4.png" alt=""></p>
+                                <p class="slide-left"><img src="res/images/slide-left.png" alt=""></p>
+                                <p class="slide-right"><img src="res/images/slide-right.png" alt=""></p>
+                            </div>
+                            <div class="content">
+                                <img src="res/images/page4-1.png" alt="">
+                            </div>
+                            <div class="bar-box">
+                                <div class="img"><img src="res/images/bar.png" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="content-box">
+                            <div class="icon-box">
+                                <dl>
+                                    <dd>绩效表现</dd>
+                                    <dt>
+                                        <img src="res/images/icon.png" alt="">
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="intro-box">
+                                <p class="slide-txt"><img src="res/images/slide4.png" alt=""></p>
+                                <p class="slide-left"><img src="res/images/slide-left.png" alt=""></p>
+                                <p class="slide-right"><img src="res/images/slide-right.png" alt=""></p>
+                            </div>
+                            <div class="content">
+                                <img src="res/images/page4-2.png" alt="">
+                            </div>
+                            <div class="bar-box">
+                                <div class="img"><img src="res/images/bar.png" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide active-s act-txt">
+                        <div class="content-box">
+                            <div class="icon-box">
+                                <dl>
+                                    <dd>行业数据</dd>
+                                    <dt>
+                                        <img src="res/images/icon5.png" alt="">
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="intro-box">
+                                <p class="slide-txt"><img src="res/images/slide5.png" alt=""></p>
+                                <p class="slide-left"><img src="res/images/slide-left.png" alt=""></p>
+                                <p class="slide-right"><img src="res/images/slide-right.png" alt=""></p>
+                            </div>
+                            <div class="content">
+                                <img src="res/images/page5-1.png" alt="">
+                            </div>
+                            <div class="bar-box">
+                                <div class="img"><img src="res/images/bar.png" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="content-box">
+                            <div class="icon-box">
+                                <dl>
+                                    <dd>行业数据</dd>
+                                    <dt>
+                                        <img src="res/images/icon5.png" alt="">
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="intro-box">
+                                <p class="slide-txt"><img src="res/images/slide5.png" alt=""></p>
+                                <p class="slide-left"><img src="res/images/slide-left.png" alt=""></p>
+                                <p class="slide-right"><img src="res/images/slide-right.png" alt=""></p>
+                            </div>
+                            <div class="content">
+                                <img src="res/images/page5-2.png" alt="">
+                            </div>
+                            <div class="bar-box">
+                                <div class="img"><img src="res/images/bar.png" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide active-s act-txt">
+                        <div class="content-box">
+                            <div class="icon-box">
+                                <dl>
+                                    <dd>龙虎榜</dd>
+                                    <dt>
+                                        <img src="res/images/icon6.png" alt="">
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="intro-box">
+                                <p class="slide-txt"><img src="res/images/slide6.png" alt=""></p>
+                                <p class="slide-left"><img src="res/images/slide-left.png" alt=""></p>
+                                <p class="slide-right"><img src="res/images/slide-right.png" alt=""></p>
+                            </div>
+                            <div class="content">
+                                <img src="res/images/page6-1.png" alt="">
+                            </div>
+                            <div class="bar-box">
+                                <div class="img"><img src="res/images/bar.png" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="content-box">
+                            <div class="icon-box">
+                                <dl>
+                                    <dd>龙虎榜</dd>
+                                    <dt>
+                                        <img src="res/images/icon6.png" alt="">
+                                    </dt>
+                                </dl>
+                            </div>
+                            <div class="intro-box">
+                                <p class="slide-txt"><img src="res/images/slide6.png" alt=""></p>
+                                <p class="slide-left"><img src="res/images/slide-left.png" alt=""></p>
+                                <p class="slide-right"><img src="res/images/slide-right.png" alt=""></p>
+                            </div>
+                            <div class="content">
+                                <img src="res/images/page6-2.png" alt="">
+                            </div>
+                            <div class="bar-box">
+                                <div class="img"><img src="res/images/bar.png" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="slide-last next"></div>
+            </div>
+            <div class="slide-bg">
+                <div class="bg-box">
+                    <div class="slide-bg-float1">
+                        <img src="res/images/slide-float1.png" alt="">
+                    </div>
+                    <div class="slide-bg-float2"><img src="res/images/slide-bg2.png" alt=""></div>
+                </div>
+            </div>
+            <div class="slide-bg2">
+                <div class="slide-bg-float3"><img src="res/images/slide-float3.png" alt=""></div>
+            </div>
+        </div>
+        <div class="swiper-slide swiper-slide-two stop-swiping">
+            <video id="video2" x-webkit-airplay="" webkit-playsinline="" playsinline="" x5-video-player-type="h5" x5-video-orientation="portrait" x5-video-player-fullscreen="true" preload="auto" src="res/video2-20170817.mp4" class="IIV" style="width: 100%;height: 100%;object-fit:fill"></video>
+        </div>
+    </div>
+</div>
+<!-- 微信 js-sdk start -->
+<!-- <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" ></script>
+<script type="text/javascript" src="res/js/wxShare.js"></script> -->
+<script>
+</script>
+</body>
+</html>
